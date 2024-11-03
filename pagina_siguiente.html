@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Tickets</title>
+    <style>
+          * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+        }
+        .sidebar {
+            width: 60px;
+            background-color: #4A0072;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 10px;
+        }
+        .sidebar img {
+            margin-bottom: 20px;
+        }
+        .main-container {
+            width: 100%;
+            padding: 20px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #EB6609;
+            color: white;
+            padding: 10px 20px;
+        }
+        .header .user {
+            display: flex;
+            align-items: center;
+        }
+        .header .user span {
+            margin-left: 10px;
+        }
+        .content {
+            display: flex;
+            margin-top: 20px;
+            gap: 20px;
+        }
+        .data-entry, .priority-tickets {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .data-entry {
+            flex: 3;
+        }
+        .priority-tickets {
+            flex: 1;
+        }
+        .data-entry h2, .priority-tickets h2 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        .data-entry form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .data-entry form label, .data-entry form input, .data-entry form select, .data-entry form button {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .data-entry form button {
+            grid-column: span 2;
+            background-color: #333;
+            color: white;
+            cursor: pointer;
+        }
+        .records, .tickets-list {
+            margin-top: 20px;
+        }
+        .records table, .tickets-list ul {
+            width: 100%;
+        }
+        .records table th, .records table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        .tickets-list ul {
+            list-style: none;
+        }
+        .tickets-list li {
+            padding: 10px;
+            margin-bottom: 5px;
+            background-color: #ddd;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .tickets-list li span.priority {
+            padding: 5px 10px;
+            border-radius: 4px;
+            color: white;
+            font-weight: bold;
+        }
+        .priority-1 { background-color: #ff4081; }
+        .priority-2 { background-color: #EB6609; }
+        .priority-3 { background-color: #8bc34a; }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <img src="home6.jpg" alt="Home">
+        <img src="icon1.jpg" alt="Another Icon">
+    </div>
+
+    <div class="main-container">
+        <div class="header">
+            <h1>Panel de Tickets</h1>
+            <div class="user">
+                <img src="user1.jpg" alt="User Icon">
+                <span>USER</span>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="data-entry">
+                <h2>Ingreso de Datos</h2>
+                <form>
+                    <label for="departamento">Departamento</label>
+                    <select id="departamento">
+                        <option value="">Seleccionar</option>
+                    </select>
+                    
+                    <label for="provincia">Provincia</label>
+                    <select id="provincia">
+                        <option value="">Seleccionar</option>
+                    </select>
+                    
+                    <label for="distrito">Distrito</label>
+                    <select id="distrito">
+                        <option value="">Seleccionar</option>
+                    </select>
+                    
+                    <label for="nodos">Nodos</label>
+                    <select id="nodos">
+                        <option value="">Seleccionar</option>
+                    </select>
+                    
+                    <label>Ticket:</label>
+                    <input type="text">
+                    <button type="submit">Ingresar Datos</button>
+                </form>
+
+                <div class="records">
+                    <h3>Registros</h3>
+                    <table>
+                        <tr>
+                            <th>Ticket</th>
+                            <th>Ubicación</th>
+                            <th># Clientes</th>
+                            <th>Descargar</th>
+                        </tr>
+                        <tr>
+                            <td>WT-000</td>
+                            <td>DEP/PROV/DIST</td>
+                            <td>000</td>
+                            <td><button onclick="downloadFile()">⬇️ Descargar</button></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="priority-tickets">
+                <h2>Tickets - Prioridad</h2>
+                <p>Afectación<br>P1: 100 clientes o más.<br>P2: 50 - 99 clientes.<br>P3: 1 - 49 clientes.</p>
+                <div class="tickets-list">
+                    <ul>
+                        <li><span class="priority priority-1">P1</span> List item - 1002</li>
+                        <li><span class="priority priority-1">P1</span> List item - 201</li>
+                        <li><span class="priority priority-2">P2</span> List item - 68</li>
+                        <li><span class="priority priority-3">P3</span> List item - 27</li>
+                        <li><span class="priority priority-3">P3</span> List item - 6</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const data = {
+            departamentos: {
+                "Lima": {
+                    provincias: {
+                        "Lima": ["Miraflores", "San Isidro", "Surco"],
+                        "Callao": ["Bellavista", "La Perla", "Ventanilla"]
+                    },
+                    nodos: ["Nodo 1", "Nodo 2", "Nodo 3"]
+                },
+                "Cusco": {
+                    provincias: {
+                        "Cusco": ["San Sebastián", "Wanchaq", "Santiago"],
+                        "Urubamba": ["Ollantaytambo", "Machu Picchu", "Maras"]
+                    },
+                    nodos: ["Nodo A", "Nodo B", "Nodo C"]
+                }
+            }
+        };
+
+        const departamentoSelect = document.getElementById('departamento');
+        const provinciaSelect = document.getElementById('provincia');
+        const distritoSelect = document.getElementById('distrito');
+        const nodosSelect = document.getElementById('nodos');
+
+        function populateDepartamentos() {
+            Object.keys(data.departamentos).forEach(departamento => {
+                const option = document.createElement('option');
+                option.value = departamento;
+                option.textContent = departamento;
+                departamentoSelect.appendChild(option);
+            });
+        }
+
+        function populateProvincias() {
+            provinciaSelect.innerHTML = '<option value="">Seleccionar</option>';
+            distritoSelect.innerHTML = '<option value="">Seleccionar</option>';
+            
+            const selectedDepartamento = departamentoSelect.value;
+            if (selectedDepartamento) {
+                const provincias = Object.keys(data.departamentos[selectedDepartamento].provincias);
+                provincias.forEach(provincia => {
+                    const option = document.createElement('option');
+                    option.value = provincia;
+                    option.textContent = provincia;
+                    provinciaSelect.appendChild(option);
+                });
+            }
+        }
+
+        function populateDistritos() {
+            distritoSelect.innerHTML = '<option value="">Seleccionar</option>';
+            
+            const selectedDepartamento = departamentoSelect.value;
+            const selectedProvincia = provinciaSelect.value;
+            
+            if (selectedDepartamento && selectedProvincia) {
+                const distritos = data.departamentos[selectedDepartamento].provincias[selectedProvincia];
+                distritos.forEach(distrito => {
+                    const option = document.createElement('option');
+                    option.value = distrito;
+                    option.textContent = distrito;
+                    distritoSelect.appendChild(option);
+                });
+            }
+        }
+
+        function populateNodos() {
+            nodosSelect.innerHTML = '<option value="">Seleccionar</option>';
+            
+            const selectedDepartamento = departamentoSelect.value;
+            if (selectedDepartamento) {
+                const nodos = data.departamentos[selectedDepartamento].nodos;
+                nodos.forEach(nodo => {
+                    const option = document.createElement('option');
+                    option.value = nodo;
+                    option.textContent = nodo;
+                    nodosSelect.appendChild(option);
+                });
+            }
+        }
+
+        departamentoSelect.addEventListener('change', () => {
+            populateProvincias();
+            populateDistritos();
+            populateNodos();
+        });
+
+        provinciaSelect.addEventListener('change', populateDistritos);
+
+        populateDepartamentos();
+    </script>
+</body>
+</html>
+    <script>
+        function downloadFile() {
+            console.log("Función de descarga ejecutada");
+
+            const data = [
+                ["Ticket", "Ubicación", "# Clientes"],
+                ["WT-000", "DEP/PROV/DIST", "000"]
+            ];
+
+            let csvContent = "data:text/csv;charset=utf-8,";
+            data.forEach(rowArray => {
+                let row = rowArray.join(",");
+                csvContent += row + "\r\n";
+            });
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "RgistroIncidencia");
+            document.body.appendChild(link);
+
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>

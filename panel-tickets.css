@@ -1,0 +1,32 @@
+/* Estilos para las imágenes de la barra lateral */
+.sidebar img {
+    width: 40px;
+    /* Ajusta el tamaño según tu preferencia */
+    height: 40px;
+    /* Mantén las proporciones */
+    margin-bottom: 20px;
+    /* Espacio entre las imágenes */
+    cursor: pointer;
+    /* Cambia el cursor cuando el usuario pasa el ratón */
+    transition: transform 0.2s;
+    /* Añade una animación suave */
+}
+
+.sidebar img:hover {
+    transform: scale(1.1);
+    /* Agranda la imagen al pasar el ratón */
+}
+
+/* Estilos para la imagen de usuario en la cabecera */
+.header .user img {
+    width: 30px;
+    /* Ajusta el tamaño */
+    height: 30px;
+    /* Mantén las proporciones */
+    border-radius: 50%;
+    /* Hace que la imagen sea redonda */
+    border: 2px solid white;
+    /* Añade un borde blanco para resaltar la imagen */
+    margin-right: 10px;
+    /* Espacio entre la imagen y el nombre del usuario */
+}
