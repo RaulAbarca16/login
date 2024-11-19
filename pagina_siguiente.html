@@ -151,242 +151,694 @@
         .priority-3 {
             background-color: #8bc34a;
         }
+
+        .notifications {
+            margin-top: 10px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .notification-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 5px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .notifications-container {
+            display: none;
+            background-color: #FFA500;
+            padding: 10px;
+            width: 250px;
+            position: absolute;
+            top: 60px;
+            right: 10px;
+            border-radius: 5px;
+            overflow-y: auto;
+            max-height: 300px;
+        }
+
+        .priority-item {
+            background-color: #8bc34a;
+            color: white;
+            padding: 8px;
+            margin-bottom: 5px;
+            border-radius: 4px;
+        }
+
+        .header a.left {
+            cursor: pointer;
+        }
+
+        .priority-1 {
+            background-color: #ff4081;
+            /* Prioridad 1 */
+        }
+
+        .priority-2 {
+            background-color: #808080;
+            /* Prioridad 2 */
+        }
+
+        .priority-3 {
+            background-color: #8bc34a;
+            /* Prioridad 3 */
+        }
+
+        .sidebar .submenu {
+            display: none;
+            flex-direction: column;
+            align-items: start;
+            padding-left: 10px;
+            background-color: #37004a;
+            /* Más oscuro para destacar */
+            width: 100%;
+        }
+
+        .sidebar .submenu a {
+            color: white;
+            padding: 5px 10px;
+            text-decoration: none;
+            width: 100%;
+        }
+
+        .sidebar .submenu a:hover {
+            background-color: #6a1b9a;
+        }
+
+        .sidebar .menu-item:hover .submenu {
+            display: flex;
+            /* Mostrar el submenú al pasar por encima */
+        }
+
+        /* Estilo del área de contenido dinámico */
+
+        .content-dynamic {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            min-height: 200px;
+
+            .sidebar {
+                width: 200px;
+                background: #333;
+                color: white;
+                padding: 15px;
+            }
+
+            .sidebar a {
+                color: white;
+                text-decoration: none;
+                display: block;
+                margin: 10px 0;
+                padding: 5px;
+            }
+
+            .sidebar a:hover {
+                background: #575757;
+            }
+
+            .submenu {
+                margin-left: 20px;
+                margin-top: 10px;
+            }
+
+            .main-container {
+                flex: 1;
+                padding: 20px;
+            }
+
+            .content-dynamic {
+                border: 1px solid #ddd;
+                padding: 20px;
+                border-radius: 5px;
+                background: #f9f9f9;
+            }
+
+        }
+
+        .btn-long {
+            grid-column: span 2;
+            background-color: #333333;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-long:hover {
+            background-color: #EB6609;
+        }
     </style>
 </head>
 
 <body>
     <div class="sidebar">
-        <a href="#">Home</a>
-        <a href="#">Registros</a>
-        <a href="#">Ayuda</a>
-        <a href="#">Empresa</a>
+        <div class="menu-item">
+            <a href="#" onclick="showContent('home')">Home</a>
+            <div class="submenu">
+                <a href="#" onclick="showContent('inicio')">Inicio</a>
+                <a href="#" onclick="showContent('miFicha')">Mi Ficha</a>
+                <a href="#" onclick="showContent('directorio')">Directorio</a>
+            </div>
+        </div>
+        <a href="#" onclick="showContent('registros')">Registros</a>
+        <a href="#" onclick="showContent('ayuda')">Ayuda</a>
+        <a href="#" onclick="showContent('empresa')">Empresa</a>
     </div>
 
     <div class="main-container">
         <div class="header">
+            <h1>Panel de Tickets</h1>
+        </div>
+        <div id="dynamic-content" class="content-dynamic">
+            <h2>¡Bienvenido!</h2>
+            <hr>
+            </hr>
+            <p
+                style="margin-top: 15px; font-family: Arial, sans-serif; font-size: 18px; line-height: 1.5; margin-bottom: 10px;">
+                ¡Bienvenido a WOW PERU S.A.C.!
+                Nos complace recibirte en nuestra página web, un espacio diseñado para ofrecerte una experiencia
+                interactiva y amigable. Aquí encontrarás información sobre nuestros servicios, herramientas útiles y
+                acceso a soporte personalizado. <br> </p>
+            <p style="font-family: Arial, sans-serif; font-size: 18px; line-height: 1.5; margin-bottom: 10px;">
+                En WOW PERU S.A.C., nuestra prioridad es brindarte soluciones innovadoras que se adapten a tus
+                necesidades. Explora todas las secciones de nuestra web y descubre cómo podemos ayudarte a alcanzar tus
+                objetivos. <br>
+            </p>
+            <p style="font-family: Arial, sans-serif; font-size: 18px; line-height: 1.5; margin-bottom: 10px;">
+                No olvides visitar nuestro Centro de Ayuda para resolver cualquier duda o contactarnos directamente.
+                ¡Gracias por elegirnos como tu socio de confianza! <br>
+            </p>
+            <img src="ccv.jpg" style="display: block; margin: 15px auto; max-width: 85%; height: auto;">
+
+        </div>
+    </div>
+
+    <script>
+        // Contenidos para cada sección
+        const contents = {
+            home: `
+                <h2>¡Bienvenido!</h2>
+                <hr></hr>
+            <p style="margin-top: 15px; font-family: Arial, sans-serif; font-size: 18px; line-height: 1.5; margin-bottom: 10px;">
+                ¡Bienvenido a WOW PERU S.A.C.!
+                Nos complace recibirte en nuestra página web, un espacio diseñado para ofrecerte una experiencia interactiva y amigable. Aquí encontrarás información sobre nuestros servicios, herramientas útiles y acceso a soporte personalizado. <br>            </p>
+            <p style="font-family: Arial, sans-serif; font-size: 18px; line-height: 1.5; margin-bottom: 10px;">
+                Nuestro objetivo es garantizar que cada incidencia sea resuelta de la manera más rápida, efectiva y transparente posible. ¡Nunca más te quedarás esperando respuestas! <br>
+            </p>
+            <p style="font-family: Arial, sans-serif; font-size: 18px; line-height: 1.5; margin-bottom: 10px;">
+                No olvides visitar nuestro Centro de Ayuda para resolver cualquier duda o contactarnos directamente. ¡Gracias por elegirnos como tu socio de confianza! <br>
+            </p>
+            <img src="ccv.jpg" style="display: block; margin: 15px auto; max-width: 85%; height: auto;">
+            `,
+            inicio: `
+                <h2>¡Bienvenido a Nuestro Sistema de Gestión de Incidencias!</h2>
+                <hr></hr>
+                <p style="margin-top: 15px; font-family: Arial, sans-serif; font-size: 18px; line-height: 1.5; margin-bottom: 10px;">
+                Nuestro sistema está diseñado para ofrecerte una experiencia única de atención y resolución de problemas. Con un enfoque en la eficiencia y la transparencia, aquí podrás gestionar todas tus incidencias de manera rápida, clara y efectiva. <br>           
+                <p style="font-family: Arial, sans-serif; font-size: 18px; line-height: 1.5; margin-bottom: 10px;">
+                En WOW PERU S.A.C., nuestra prioridad es brindarte soluciones innovadoras que se adapten a tus necesidades. Explora todas las secciones de nuestra web y descubre cómo podemos ayudarte a alcanzar tus objetivos. <br>
+                </p>
+                <p style="font-family: Arial, sans-serif; font-size: 18px; line-height: 1.5; margin-bottom: 10px;">
+                No olvides visitar nuestro Centro de Ayuda para resolver cualquier duda o contactarnos directamente. ¡Gracias por elegirnos como tu socio de confianza! <br>
+                </p>
+                <img src="operador.jpg" style="display: block; margin: 15px auto; max-width: 40%; height: auto;">
+
+            `,
+            miFicha: `
+        <h2>Resumen</h2>
+        <hr> </hr>
+
+        <table style="width: 100%; font-family: Arial, sans-serif; font-size: 17px; border-collapse: collapse; line-height: 1.8;">
+            <tr>
+                <td style="text-align: left;">Cargo</td>
+                <td style="text-align: left;">OPERADOR NOC</td>
+            </tr>
+            <tr>
+                <td style="text-align: left;">Área</td>
+                <td style="text-align: left;">Technical (NOC)</td>
+            </tr>
+            <tr>
+                <td style="text-align: left;">División</td>
+                <td style="text-align: left;">Technical</td>
+            </tr>
+            <tr>
+                <td style="text-align: left;">Empresa</td>
+                <td style="text-align: left;">WOW TEL S.A.C</td>
+            </tr>
+            <tr>
+                <td style="text-align: left;">Supervisor</td>
+                <td style="text-align: left;">Tomas, Roxana Francesca</td>
+            </tr>
+            <tr>
+                <td style="text-align: left;">Tipo de contrato</td>
+                <td style="text-align: left;">Contro a Plazo Indeterminado</td>
+            </tr>
+            <tr>
+                <td style="text-align: left;">Fecha de ingreso</td>
+                <td style="text-align: left;">14 de agosto de 2023 (más de 1 año)</td>
+            </tr>
+            <tr>
+                <td style="text-align: left;">Saldo de vacaciones</td>
+                <td style="text-align: left;">21.8 días</td>
+            </tr>
+        </table>
+    `,
+            directorio: `
+                <h2>Directorio</h2>
+                <hr> </hr>
+                <table style="width: 100%; font-family: Arial, sans-serif; font-size: 17px; border-collapse: collapse; line-height: 1.8;">
+            <tr>
+                <td style="text-align: left;">Nombre</td>
+                <td style="text-align: left;">Valentin Sanchez Gomez</td>
+            </tr>
+            <tr>
+                <td style="text-align: left;">Cargo</td>
+                <td style="text-align: left;">Operador NOC</td>
+            </tr>
+            <tr>
+                <td style="text-align: left;">División</td>
+                <td style="text-align: left;">O&M</td>
+            </tr>
+             <tr>
+                <td style="text-align: left;">Área sub área</td>
+                <td style="text-align: left;">SUPERVISOR O&M Norte
+                Planta externa Norte</td>
+            </tr>
+            <tr>
+                <td style="text-align: left;">Teléfono</td>
+                <td style="text-align: left;">989 563 442</td>
+            </tr>
+            <tr>
+                <td style="text-align: left;">Correo</td>
+                <td style="text-align: left;">vgomez@gmail.com</td>
+            </tr>
+        </table>
+            `,
+            registros: `
+                <h2>REGISTROS</h2>
+                <hr></hr>
+                <div style="background-color: white; border: 2px solid #ccc; padding: 20px; width: 80%; margin: 20px auto; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                <h3 style="text-align: center; color: #333;">BÚSQUEDA</h3>
+                <p style="font-family: Arial, sans-serif; font-size: 12px; color: #555;">
+                Encuentra aquí guías y soporte técnico para resolver tus dudas. Si necesitas más información, no dudes en ponerte en contacto con el soporte técnico.
+            </p>
+        </div>
+            `,
+            ayuda: `
+        <h2>CENTRO DE AYUDA</h2>
+        <hr></hr>
+        <div style="background-color: white; border: 2px solid #ccc; padding: 20px; width: 80%; margin: 20px auto; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+            <h3 style="text-align: center; color: #333;">TERMINOS EN CONDICIONES</h3>
+        <p style="margin-top: 20px; font-family: Arial, sans-serif; font-size: 15px; line-height: 1.5; margin-bottom: 10px;">
+            1. Introducción
+            Bienvenido a WOW PERU S.A.C. Al utilizar nuestros servicios, aceptas los siguientes términos y condiciones. Si no estás de acuerdo, por favor, no uses nuestra página web. <br>
+
+            2. Uso de la Información
+            Toda la información proporcionada en esta página es solo para fines informativos. WOW PERU S.A.C no garantiza que la información esté libre de errores, aunque trabajamos para mantenerla actualizada y precisa. <br>
+
+            3. Propiedad Intelectual
+            El contenido, diseño, logotipos y material visual de esta página web son propiedad de WOW PERU S.A.C. Está prohibida su reproducción sin autorización previa. <br>
+
+            4. Políticas de Privacidad
+            Respetamos tu privacidad. Los datos proporcionados por los usuarios serán utilizados únicamente para brindar los servicios solicitados y no serán compartidos con terceros sin tu consentimiento. <br>
+
+            5. Modificaciones a los Términos
+            WOW PERU S.A.C se reserva el derecho de modificar estos términos en cualquier momento. Las actualizaciones serán publicadas en esta misma sección. <br>
+            <h4 style="text-align: center; color: #333;">PREGUNTAS FRECUENTES</h4>
+            <p style="margin-top: 15px; font-family: Arial, sans-serif; font-size: 17px; line-height: 1.5; margin-bottom: 10px;">
+
+                1. ¿Qué servicios ofrece WOW PERU S.A.C?
+                Brindamos soluciones personalizadas en [detalla los servicios de la empresa, e.g., logística, consultoría, distribución, etc.].  <br>
+
+                2. ¿Cómo puedo contactar con servicio al cliente?
+                Puedes escribirnos a nuestro correo electrónico contacto@wowperu.com o llamarnos al [número de teléfono]. Nuestro horario de atención es de lunes a viernes, de 9:00 a.m. a 6:00 p.m.  <br> 
+
+                3. ¿Dónde están ubicados?
+                Estamos ubicados en [dirección exacta]. Consulta la sección de Contáctanos para más detalles.  <br>
+
+                4. ¿Cómo puedo realizar un pedido o contratar sus servicios?
+                Accede a la sección de Servicios en nuestro sitio web, selecciona la opción deseada y completa el formulario con tus datos. Nos pondremos en contacto contigo lo antes posible.  <br>
+
+                5. ¿Qué métodos de pago aceptan?
+                Aceptamos pagos con tarjeta de crédito/débito, transferencias bancarias y [otros métodos específicos].  <br>
+    `,
+            empresa: `
+        <h2>INFORMACION DE LA EMPRESA</h2>
+                <hr> </hr>
+
+        <p style="margin-top: 15px; font-family: Arial, sans-serif; font-size: 15px; line-height: 1.5; margin-bottom: 10px;">
+            Sector: Telecomunicaciones
+        </p>
+        <p style="font-family: Arial, sans-serif; font-size: 17px; line-height: 1.5; margin-bottom: 10px;">
+            RUC: 20605977406
+        </p>
+        <p style="font-family: Arial, sans-serif; font-size: 17px; line-height: 1.5; margin-bottom: 10px;">
+            Fecha de inicio: 2022
+        </p>
+        <p style="font-family: Arial, sans-serif; font-size: 17px; line-height: 1.5; margin-bottom: 10px;">
+            Sede: Lima, Surco.
+        </p>
+        <p style="font-family: Arial, sans-serif; font-size: 17px; line-height: 1.5; margin-bottom: 10px;">
+            Cobertura geográfica: Actualmente tiene presencia en 85 distritos, 25 provincias y 13 departamentos del país, con un enfoque marcado en áreas fuera de Lima.
+        </p>
+        <p style="font-family: Arial, sans-serif; font-size: 17px; line-height: 1.5; margin-bottom: 10px;">
+            Clientes: Más de 120 mil usuarios en ciudades como Ica, Huancavelica, Tacna, Chiclayo, Moquegua, Tumbes, entre otras.
+        </p>
+        <p style="font-family: Arial, sans-serif; font-size: 17px; line-height: 1.5; margin-bottom: 10px;">
+            Participación en el mercado: WOW Perú ostenta un market share del 16.3% a nivel nacional en el segmento de internet por fibra óptica, con un crecimiento notable en el tercer trimestre de 2023.
+        </p>
+        <p style="font-family: Arial, sans-serif; font-size: 17px; line-height: 1.5; margin-bottom: 10px;">
+            Equipo directivo: Rodrigo Arosemena es el gerente general de WOW Perú.
+        </p>
+        <p style="font-family: Arial, sans-serif; font-size: 17px; line-height: 1.5; margin-bottom: 10px;">
+            Expansión: WOW Perú está en pleno proceso de expansión hacia nuevas regiones del país con la meta de distribuir el acceso a internet de forma más equitativa y descentralizada.
+        </p>
+        <p style="font-family: Arial, sans-serif; font-size: 17px; line-height: 1.5; margin-bottom: 10px;">
+            Inversión y tecnología: WOW Perú invierte en tecnología de fibra óptica para garantizar alta velocidad y conectividad estable.
+        </p>
+        <img 
+            src="somosunequipowow.jpg" 
+            alt="Representación gráfica de WOW Perú" 
+            style="display: block; margin: 20px auto; max-width: 90%; height: auto;">
+    `
+        };
+
+        // Función para mostrar contenido dinámico en el mismo contenedor
+        function showContent(section) {
+            const container = document.getElementById('dynamic-content');
+
+            // Validar si la sección existe en el objeto contents
+            if (contents[section]) {
+                container.innerHTML = contents[section]; // Actualiza el contenido
+            } else {
+                container.innerHTML = `
+                    <h2>Error</h2>
+                    <p>Sección no encontrada.</p>
+                `;
+            }
+        }
+    </script>
+</body>
+
+</html>
+
+</html>
+<div class="main-container">
+    <div class="header">
+        <a href="#notificaciones" class="left">
             <h1>Notificaciones</h1>
-            <div class="user">
-                <span>USER</span>
-            </div>
+            <span>¡Revisa tus nodos!</span>
+        </a>
+
+        <!-- Sección de notificaciones dinámicas -->
+        <div class="notifications" id="notificaciones">
+            <!-- Aquí se agregarán las notificaciones -->
         </div>
 
-        <div class="content">
-            <div class="data-entry">
-                <h2>Ingreso de Datos</h2>
-                <form onsubmit="event.preventDefault(); ingresarDatos();">
-                    <label for="departamento">Departamento</label>
-                    <select id="departamento">
-                        <option value="">Seleccionar</option>
-                    </select>
-
-                    <label for="provincia">Provincia</label>
-                    <select id="provincia">
-                        <option value="">Seleccionar</option>
-                    </select>
-
-                    <label for="distrito">Distrito</label>
-                    <select id="distrito">
-                        <option value="">Seleccionar</option>
-                    </select>
-
-                    <label for="nodos">Nodos</label>
-                    <select id="nodos">
-                        <option value="">Seleccionar</option>
-                    </select>
-
-                    <label>Ticket:</label>
-                    <input type="text" id="ticket">
-                    <button type="submit">Ingresar Datos</button>
-                </form>
-
-                <div class="records">
-                    <h3>Registros</h3>
-                    <table id="tabla-registros">
-                        <thead>
-                            <tr>
-                                <th>Ticket</th>
-                                <th>Ubicación</th>
-                                <th># Clientes</th>
-                                <th>Descargar</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Aquí se agregarán los registros dinámicamente -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div class="priority-tickets">
-                <h2>Tickets - Prioridad</h2>
-                <p>Afectación<br>P1: 100 clientes o más.<br>P2: 50 - 99 clientes.<br>P3: 1 - 49 clientes.</p>
-                <div class="tickets-list">
-                    <ul>
-                        <li><span class="priority priority-1">P1</span> List item - 1002</li>
-                        <li><span class="priority priority-1">P1</span> List item - 201</li>
-                        <li><span class="priority priority-2">P2</span> List item - 68</li>
-                        <li><span class="priority priority-3">P3</span> List item - 27</li>
-                        <li><span class="priority priority-3">P3</span> List item - 6</li>
-                    </ul>
+        <!-- Dropdown de usuario -->
+        <div class="dropdown">
+            <a href="#" class="right">
+                <span>USER</span>
+            </a>
+            <div class="dropdown-content">
+                <div class="user-info">
+                    <img src="uuuserrr.png" alt="Avatar de usuario">
+                    <h3>User</h3>
+                    <p>vsg@wowperu.pe</p>
+                    <button class="logout-btn" onclick="logout()">Cerrar sesión</button>
+                    <script>
+                        function logout() {
+                            window.location.href = 'index.html';
+                        }
+                    </script>
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
-        const data = {
-            departamentos: {
-                "Lima": {
-                    provincias: {
-                        "Lima": ["Miraflores", "San Isidro", "Surco"],
-                        "Callao": ["Bellavista", "La Perla", "Ventanilla"]
-                    },
-                    nodos: ["Nodo 1", "Nodo 2", "Nodo 3"]
-                },
-                "Cusco": {
-                    provincias: {
-                        "Cusco": ["San Sebastián", "Wanchaq", "Santiago"],
-                        "Urubamba": ["Ollantaytambo", "Machu Picchu", "Maras"]
-                    },
-                    nodos: ["Nodo A", "Nodo B", "Nodo C"]
+    <div class="content">
+        <div class="data-entry">
+            <h2>Ingreso de Datos</h2>
+            <form onsubmit="event.preventDefault(); ingresarDatos();">
+                <label for="departamento">Departamento</label>
+                <select id="departamento">
+                    <option value="">Seleccionar</option>
+                </select>
+
+                <label for="provincia">Provincia</label>
+                <select id="provincia">
+                    <option value="">Seleccionar</option>
+                </select>
+
+                <label for="distrito">Distrito</label>
+                <select id="distrito">
+                    <option value="">Seleccionar</option>
+                </select>
+
+
+                <label for="estado">Estados</label>
+                <select id="estado">
+                    <option value="">Seleccionar</option>
+                    <option value="activo">Activo</option>
+                    <option value="inactivo">Inactivo</option>
+                </select>
+
+                <label for="nodos">Nodos:</label>
+                <input type="text" id="nodos">
+
+                <label>Ticket:</label>
+                <input type="text" id="ticket">
+
+                <button type="submit">Ingresar Datos</button>
+                </tbody>
+                </table>
+
+
+            </form>
+            <script>
+                function actualizarNodos() {
+                    // Obtener valores de los campos
+                    const departamento = document.getElementById("departamento").value;
+                    const provincia = document.getElementById("provincia").value;
+                    const distrito = document.getElementById("distrito").value;
+                    const estado = document.getElementById("estado").value;
+                    const ticket = document.getElementById("ticket").value;
+
+                    // Concatenar valores en el formato deseado
+                    const nodos = `${departamento || 'Sin Departamento'} / ${provincia || 'Sin Provincia'} / ${distrito || 'Sin Distrito'} - Estado: ${estado || 'Sin Estado'} - Ticket: ${ticket || 'Sin Ticket'}`;
+
+                    // Mostrar los datos en el cuadro de texto de nodos
+                    document.getElementById("nodos").value = nodos;
                 }
+            </script>
+            <div class="records">
+                <h3>Registros</h3>
+                <table id="tabla-registros">
+                    <thead>
+                        <tr>
+                            <th>Ticket</th>
+                            <th>Ubicacion</th>
+                            <th># Clientes</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Registros Dinámicos -->
+                    </tbody>
+                </table>
+                <button class="btn-long" style="margin-top: 10px; width: 100%;"
+                    onclick="downloadAllData()">Descargar</button>
+            </div>
+        </div>
+
+        <div class="priority-tickets">
+            <h2>Tickets - Prioridad</h2>
+            <p>Afectación<br>P1: 100 clientes o más 4h.<br>P2: 50 - 99 clientes 6h.<br>P3: 1 - 49 clientes 8h.</p>
+            <div class="tickets-list">
+                <ul>
+                    <li><span class="priority priority-1">P1</span> List item - 1002</li>
+                    <li><span class="priority priority-1">P1</span> List item - 201</li>
+                    <li><span class="priority priority-2">P2</span> List item - 68</li>
+                    <li><span class="priority priority-3">P3</span> List item - 27</li>
+                    <li><span class="priority priority-3">P3</span> List item - 6</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const data = {
+        departamentos: {
+            "Lima": {
+                provincias: {
+                    "Lima": ["Miraflores", "San Isidro", "Surco"],
+                    "Callao": ["Bellavista", "La Perla", "Ventanilla"]
+                },
+                nodos: ["Nodo 1", "Nodo 2", "Nodo 3"]
+            },
+            "Cusco": {
+                provincias: {
+                    "Cusco": ["San Sebastián", "Wanchaq", "Santiago"],
+                    "Urubamba": ["Ollantaytambo", "Machu Picchu", "Maras"]
+                },
+                nodos: ["Nodo A", "Nodo B", "Nodo C"]
             }
-        };
+        }
+    };
 
-        const departamentoSelect = document.getElementById('departamento');
-        const provinciaSelect = document.getElementById('provincia');
-        const distritoSelect = document.getElementById('distrito');
-        const nodosSelect = document.getElementById('nodos');
+    const departamentoSelect = document.getElementById('departamento');
+    const provinciaSelect = document.getElementById('provincia');
+    const distritoSelect = document.getElementById('distrito');
+    const nodosSelect = document.getElementById('nodos');
 
-        function populateDepartamentos() {
-            Object.keys(data.departamentos).forEach(departamento => {
+    function populateDepartamentos() {
+        Object.keys(data.departamentos).forEach(departamento => {
+            const option = document.createElement('option');
+            option.value = departamento;
+            option.textContent = departamento;
+            departamentoSelect.appendChild(option);
+        });
+    }
+
+    function populateProvincias() {
+        provinciaSelect.innerHTML = '<option value="">Seleccionar</option>';
+        distritoSelect.innerHTML = '<option value="">Seleccionar</option>';
+
+        const selectedDepartamento = departamentoSelect.value;
+        if (selectedDepartamento) {
+            const provincias = Object.keys(data.departamentos[selectedDepartamento].provincias);
+            provincias.forEach(provincia => {
                 const option = document.createElement('option');
-                option.value = departamento;
-                option.textContent = departamento;
-                departamentoSelect.appendChild(option);
+                option.value = provincia;
+                option.textContent = provincia;
+                provinciaSelect.appendChild(option);
             });
         }
+    }
 
-        function populateProvincias() {
-            provinciaSelect.innerHTML = '<option value="">Seleccionar</option>';
-            distritoSelect.innerHTML = '<option value="">Seleccionar</option>';
+    function populateDistritos() {
+        distritoSelect.innerHTML = '<option value="">Seleccionar</option>';
 
-            const selectedDepartamento = departamentoSelect.value;
-            if (selectedDepartamento) {
-                const provincias = Object.keys(data.departamentos[selectedDepartamento].provincias);
-                provincias.forEach(provincia => {
-                    const option = document.createElement('option');
-                    option.value = provincia;
-                    option.textContent = provincia;
-                    provinciaSelect.appendChild(option);
-                });
-            }
+        const selectedDepartamento = departamentoSelect.value;
+        const selectedProvincia = provinciaSelect.value;
+
+        if (selectedDepartamento && selectedProvincia) {
+            const distritos = data.departamentos[selectedDepartamento].provincias[selectedProvincia];
+            distritos.forEach(distrito => {
+                const option = document.createElement('option');
+                option.value = distrito;
+                option.textContent = distrito;
+                distritoSelect.appendChild(option);
+            });
+        }
+    }
+
+    function populateNodos() {
+        nodosSelect.innerHTML = '<option value="">Seleccionar</option>';
+
+        const selectedDepartamento = departamentoSelect.value;
+        if (selectedDepartamento) {
+            const nodos = data.departamentos[selectedDepartamento].nodos;
+            nodos.forEach(nodo => {
+                const option = document.createElement('option');
+                option.value = nodo;
+                option.textContent = nodo;
+                nodosSelect.appendChild(option);
+            });
+        }
+    }
+
+    departamentoSelect.addEventListener('change', () => {
+        populateProvincias();
+        populateDistritos();
+        populateNodos();
+    });
+
+    provinciaSelect.addEventListener('change', populateDistritos);
+
+    populateDepartamentos();
+</script>
+
+<script>
+    function ingresarDatos() {
+        const departamento = document.getElementById("departamento").value;
+        const provincia = document.getElementById("provincia").value;
+        const distrito = document.getElementById("distrito").value;
+        const nodos = document.getElementById("nodos").value;
+        const ticket = document.getElementById("ticket").value;
+        const estado = document.getElementById("estado").value;
+
+        if (!ticket) {
+            alert("Por favor ingresa el ticket.");
+            return;
         }
 
-        function populateDistritos() {
-            distritoSelect.innerHTML = '<option value="">Seleccionar</option>';
-
-            const selectedDepartamento = departamentoSelect.value;
-            const selectedProvincia = provinciaSelect.value;
-
-            if (selectedDepartamento && selectedProvincia) {
-                const distritos = data.departamentos[selectedDepartamento].provincias[selectedProvincia];
-                distritos.forEach(distrito => {
-                    const option = document.createElement('option');
-                    option.value = distrito;
-                    option.textContent = distrito;
-                    distritoSelect.appendChild(option);
-                });
-            }
+        let priorityClass = '';
+        let priorityText = '';
+        if (nodos >= 100) {
+            priorityClass = 'priority-1';
+            priorityText = 'P1';
+        } else if (nodos >= 50) {
+            priorityClass = 'priority-2';
+            priorityText = 'P2';
+        } else {
+            priorityClass = 'priority-3';
+            priorityText = 'P3';
         }
 
-        function populateNodos() {
-            nodosSelect.innerHTML = '<option value="">Seleccionar</option>';
+        const tabla = document.getElementById("tabla-registros").getElementsByTagName("tbody")[0];
+        const nuevaFila = tabla.insertRow();
 
-            const selectedDepartamento = departamentoSelect.value;
-            if (selectedDepartamento) {
-                const nodos = data.departamentos[selectedDepartamento].nodos;
-                nodos.forEach(nodo => {
-                    const option = document.createElement('option');
-                    option.value = nodo;
-                    option.textContent = nodo;
-                    nodosSelect.appendChild(option);
-                });
-            }
-        }
+        nuevaFila.insertCell(0).textContent = ticket;
+        nuevaFila.insertCell(1).textContent = `${departamento} / ${provincia} / ${distrito}`;
+        nuevaFila.insertCell(2).textContent = nodos;
+        nuevaFila.insertCell(3).textContent = estado;
 
-        departamentoSelect.addEventListener('change', () => {
-            populateProvincias();
-            populateDistritos();
-            populateNodos();
+        const notificacionesContainer = document.getElementById("notificaciones");
+        const notificacion = document.createElement("div");
+        notificacion.classList.add("notification-item", priorityClass);
+        notificacion.innerHTML = `<span>${priorityText} - Ticket ${ticket} en ${departamento}/${provincia}/${distrito}</span>`;
+        notificacionesContainer.prepend(notificacion);
+
+        document.getElementById("departamento").value = "";
+        document.getElementById("provincia").value = "";
+        document.getElementById("distrito").value = "";
+        document.getElementById("nodos").value = "";
+        document.getElementById("ticket").value = "";
+        document.getElementById("estado").value = "Activo";
+    }
+
+    function downloadAllData() {
+        const table = document.getElementById("tabla-registros");
+        const rows = table.querySelectorAll("tbody tr");
+        let csvContent = "Ticket,Ubicacion,# Clientes,Estado\n";
+
+        rows.forEach(row => {
+            const cells = row.querySelectorAll("td");
+            const rowData = Array.from(cells).map(cell => cell.textContent.trim());
+            csvContent += rowData.join(",") + "\n";
         });
 
-        provinciaSelect.addEventListener('change', populateDistritos);
-
-        populateDepartamentos();
-    </script>
-
-    <script>
-        function ingresarDatos() {
-            const departamento = document.getElementById("departamento").value;
-            const provincia = document.getElementById("provincia").value;
-            const distrito = document.getElementById("distrito").value;
-            const nodos = document.getElementById("nodos").value;
-            const ticket = document.getElementById("ticket").value;
-
-            if (!ticket) {
-                alert("Por favor ingresa el ticket.");
-                return;
-            }
-
-            const tabla = document.getElementById("tabla-registros").getElementsByTagName("tbody")[0];
-            const nuevaFila = tabla.insertRow();
-
-            const celdaTicket = nuevaFila.insertCell(0);
-            celdaTicket.textContent = ticket;
-
-            const celdaUbicacion = nuevaFila.insertCell(1);
-            celdaUbicacion.textContent = `${departamento} / ${provincia} / ${distrito}`;
-
-            const celdaClientes = nuevaFila.insertCell(2);
-            celdaClientes.textContent = nodos;
-
-            const celdaDescargar = nuevaFila.insertCell(3);
-            const botonDescargar = document.createElement("button");
-            botonDescargar.textContent = "Descargar";
-            botonDescargar.onclick = function () {
-                downloadFile(ticket, `${departamento} / ${provincia} / ${distrito}`, nodos);
-            };
-            celdaDescargar.appendChild(botonDescargar);
-
-            document.getElementById("departamento").value = "";
-            document.getElementById("provincia").value = "";
-            document.getElementById("distrito").value = "";
-            document.getElementById("nodos").value = "";
-            document.getElementById("ticket").value = "";
-        }
-
-        function downloadFile(ticket, ubicacion, clientes) {
-            const data = [
-                ["Ticket", "Ubicación", "# Clientes"],
-                [ticket, ubicacion, clientes]
-            ];
-
-            let csvContent = "data:text/csv;charset=utf-8,";
-            data.forEach(rowArray => {
-                let row = rowArray.join(",");
-                csvContent += row + "\r\n";
-            });
-
-            const encodedUri = encodeURI(csvContent);
-            const link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", "RegistroIncidencia.csv");
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-    </script>
+        const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "Registros.csv";
+        link.style.display = "none";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+</script>
 </body>
 
 </html>

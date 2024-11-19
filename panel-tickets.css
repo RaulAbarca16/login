@@ -14,11 +14,11 @@ body {
 /* Barra lateral */
 .sidebar {
     width: 80px;
-    background-color: #4A0072; /* Morado profundo */
+    background-color: #4A0072; 
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around; /* Distribuye los elementos verticalmente */
+    justify-content: space-around; /* Elementos verticalmente */
     height: 100vh;
 }
 
@@ -42,38 +42,25 @@ body {
 /* Encabezado */
 .header {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #EB6609; /* Naranja brillante */
+    justify-content: space-between; /* Para alinear los extremos */
+    align-items: center; /* Centrar verticalmente */
+    background-color: #D45F00;
     color: white;
     padding: 10px 20px;
-    border-radius: 8px;
-    position: fixed;
-    top: 0;
-    left: 60px;
-    right: 0;
-    height: 50px;
 }
 
-.header h1 {
+.header .title {
+    margin: 0;
     font-size: 1.2rem;
-    font-weight: bold;
 }
 
 .header .user {
     display: flex;
     align-items: center;
-    font-size: 1rem;
+    font-size: 1.2rem;
 }
 
-.header .user .icon-user {
-    width: 30px;
-    height: 30px;
-    background-image: url('path/to/user-icon.png'); /* Ruta del icono de usuario */
-    background-size: contain;
-    background-repeat: no-repeat;
-    margin-right: 10px;
-}
+
 
 /* Contenido */
 .content {
@@ -227,4 +214,178 @@ body {
 
 .priority-3 {
     background-color: #8bc34a;
+}
+.header {
+    display: flex;
+    justify-content: space-between; /* Para alinear los extremos */
+    align-items: center; /* Centrar verticalmente */
+    background-color: #D45F00;
+    color: white;
+    padding: 10px 20px;
+}
+
+.header .title {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.header .user {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+}
+.header {
+    display: flex;               /* Habilita flexbox */
+    justify-content: space-between; /* Espacia los elementos a los extremos */
+    align-items: center;         /* Centra verticalmente los elementos */
+    background-color: #D45F00;   /* Fondo naranja */
+    color: white;                /* Texto blanco */
+    padding: 10px 20px;          /* Espaciado interno */
+}
+
+.header .left h1, .header .right span {
+    margin: 0;                   /* Elimina márgenes extras */
+}
+
+.header .right {
+    font-size: 1.2rem;           /* Ajusta el tamaño del texto */
+    font-weight: bold;           /* Opcional: Texto en negrita */
+}
+.header {
+    display: flex;               /* Habilita flexbox */
+    justify-content: space-between; /* Alinea a los extremos */
+    align-items: center;         /* Centra verticalmente */
+    background-color: #D45F00;   /* Fondo naranja */
+    color: white;                /* Texto blanco */
+    padding: 10px 20px;          /* Espaciado interno */
+    text-decoration: none;       /* Elimina subrayado en enlaces */
+}
+
+.header a {
+    display: flex;               /* Alinea contenido dentro de cada enlace */
+    flex-direction: column;      /* Coloca contenido en columnas */
+    align-items: center;         /* Centra horizontalmente */
+    color: white;                /* Texto blanco */
+    text-decoration: none;       /* Sin subrayado */
+}
+
+.header a:hover {
+    color: #ffcc00;              /* Cambia el color al pasar el mouse */
+}
+
+.header .right img {
+    margin-left: 8px;            /* Espaciado entre texto e icono */
+}
+/* Estilos generales */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #D45F00;
+    color: white;
+    padding: 10px 20px;
+}
+
+.header a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0; /* Alineado con el borde derecho */
+    background-color: white;
+    color: black;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    padding: 10px;
+    border-radius: 5px;
+    width: 200px;
+}
+
+.dropdown-content .user-info {
+    text-align: center;
+}
+
+.dropdown-content img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.dropdown-content h3 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.dropdown-content p {
+    margin: 5px 0 10px 0;
+    font-size: 0.9rem;
+    color: gray;
+}
+
+.dropdown-content .logout-btn {
+    background-color: #D45F00;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.dropdown-content .lsogout-btn:hover {
+    background-color: #ff7043;
+}
+
+/* Mostrar el dropdown al pasar el mouse */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+/* Estilos para el contenedor principal */
+.main-container {
+    font-family: Arial, sans-serif;
+}
+
+/* Estilos del encabezado */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #D45F00;
+    color: white;
+    padding: 10px 20px;
+}
+
+/* Estilos de los enlaces en el encabezado */
+.header a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.header .left span {
+    font-size: 0.9rem;
+    display: block;
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative; /* Base para el menú desplegable */
+}
+
+.dropdown a {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espacio entre el texto y el icono */
 }
